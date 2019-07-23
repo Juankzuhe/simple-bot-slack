@@ -11,11 +11,11 @@ config.read("config.ini")
 authed_teams = {}
 
 
-class PlayvoxBot(object):
+class Bot(object):
 
     def __init__(self):
-        super(PlayvoxBot, self).__init__()
-        self.name = "playvoxbot"
+        super(Bot, self).__init__()
+        self.name = "bot"
         self.as_user = True
         self.oauth = {"client_id": config.get("slack", "client_id"),
                       "client_secret": config.get("slack", "client_secret"),
@@ -108,7 +108,7 @@ class PlayvoxBot(object):
         elif incoming_message.upper() in ['HOLA', 'HI', 'HELLO']:
             self.client.chat_postMessage(
                 channel=channel,
-                text="Hello, <@{}> from playvoxbot".format(user_id))
+                text="Hello, <@{}> from bot slack".format(user_id))
             return
 
         elif incoming_message.upper() in ['TIEMPO', 'CLIMA', 'TIME', 'WEATHER']:
