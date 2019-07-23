@@ -24,7 +24,7 @@ class PlayvoxBot(object):
         self.client = WebClient(token=config.get("slack", "oauth_secret"))
 
     def auth(self, code):
-        print('client_id: {} ----- client_secret: {} ----- code:{}'.format(self.oauth["client_id"], self.oauth["client_secret"], code))
+
         auth_response = self.client.oauth_access(
                 client_id=self.oauth["client_id"],
                 client_secret=self.oauth["client_secret"],
@@ -35,8 +35,6 @@ class PlayvoxBot(object):
                                  auth_response["bot"]["bot_access_token"]}
 
         self.client = WebClient(authed_teams[team_id]["bot_token"])
-
-        print('user_id: {}'.format(auth_response['user_id']))
 
     def open_dm(self, user_id):
         new_dm = self.client.im_open(user=user_id)
@@ -100,8 +98,6 @@ class PlayvoxBot(object):
         user_id = slack_event["event"]["user"]
         channel = slack_event["event"]["channel"]
         incoming_message = slack_event["event"]["text"]
-
-        print('**** properties: event:{}, user_id: {}, channel:{}, incoming_message:{} ****'.format(event_type, user_id, channel, incoming_message))
 
         if incoming_message.upper() in ['FEO', 'SHIT', 'MALDITO', 'BITCH']:
             self.client.chat_postMessage(

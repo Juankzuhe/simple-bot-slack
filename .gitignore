@@ -105,6 +105,7 @@ venv.bak/
 
 #Visual Studio Code
 .vscode
+.idea/
 config.ini
 credentials.csv
 offensivewords.txt
